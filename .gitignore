@@ -116,7 +116,6 @@ output.ipynb
 *.npz
 *.data
 *.dat
-*.csv
 *.tsv
 *.zip
 .vscode/
