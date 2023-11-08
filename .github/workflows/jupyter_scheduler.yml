@@ -1,0 +1,25 @@
+name: Run Jupyter Notebook Daily
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Run at 8:00 AM UTC
+
+jobs:
+  run_notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Adjust the Python version if needed
+
+    - name: Install dependencies
+      run: pip install jupyter
+
+    - name: Run Jupyter Notebook
+      run: |
+        jupyter nbconvert --execute NLP/Scraping/WebScraping.ipynb --to notebook --inplace
