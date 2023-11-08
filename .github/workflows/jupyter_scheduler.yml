@@ -9,7 +9,7 @@ on:
 jobs:
   run_notebook:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -39,3 +39,19 @@ jobs:
     - name: Run Jupyter Notebook
       run: |
         jupyter nbconvert --execute NLP/Scraping/WebScraping.ipynb --to notebook --inplace
+
+    - name: Save Word Cloud Image
+      run: |
+        # Your code for generating the word cloud image goes here
+        # Replace this with your word cloud generation code
+
+        # Save the word cloud image in the 'clouds' directory
+        todayDate = datetime.today().strftime('%Y-%m-%d-%H%M%S')
+        image_path = "clouds/" + todayDate + "_wordcloud.png"
+        plt.savefig(image_path, dpi=300)
+
+    - name: Upload Word Cloud Image Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: wordcloud-image
+        path: clouds  # The directory where the word cloud image is saved
