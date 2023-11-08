@@ -31,8 +31,9 @@ jobs:
         pip install nltk
         pip install scikit-learn
 
-    - name: Install dependencies
-      run: pip install jupyter
+    - name: Download NLTK stopwords
+      run: |
+        python -c "import nltk; nltk.download('stopwords')"
 
     - name: Run Jupyter Notebook
       run: |
