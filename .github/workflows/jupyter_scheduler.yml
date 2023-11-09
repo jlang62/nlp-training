@@ -3,7 +3,7 @@ name: Run Jupyter Notebook Daily
 on:
   push:
     paths:
-      - 'Scraping/**/*'
+      - 'Scraping/*'
   schedule:
     - cron: '0 7 * * *'  # Run at 8:00 AM in your local time zone (CET)
 
