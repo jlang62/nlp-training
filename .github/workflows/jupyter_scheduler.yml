@@ -4,7 +4,6 @@ on:
   push:
   schedule:
     - cron: '0 7 * * *'  # Run at 8:00 AM in your local time zone (CET)
-    - cron: '0 11 * * *'  # Run at 12:00 PM (midday) in your local time zone (CEST)
 
 jobs:
   run_notebook:
@@ -30,6 +29,7 @@ jobs:
         pip install wordcloud
         pip install nltk
         pip install scikit-learn
+        pip install python-dotenv
 
     - name: Download NLTK resources
       run: |
@@ -39,4 +39,9 @@ jobs:
     - name: Run Jupyter Notebook
       run: |
         jupyter nbconvert --execute NLP/Scraping/WebScraping.ipynb --to notebook --inplace
-
+      env:
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        MAIL_TO: ${{ secrets.MAIL_TO }}
+        MAIL_HOST: ${{ secrets.MAIL_HOST }}
+        MAIL_USER: ${{ secrets.MAIL_USER }}
